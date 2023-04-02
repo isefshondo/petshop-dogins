@@ -18,31 +18,41 @@ servicesInterface.maxsize(width, height)
 servicesInterface.minsize(width, height)
 
 servicesInterface.geometry("%dx%d+%d+%d" % (width, height, posx, posy))
+servicesInterface.configure(bg = "#FFF")
 
-# TODO: Configure font
-# TODO: Grid of the page
+# Styling Services Interface
 logoLabel = Label(servicesInterface, text = "Dogin's")
 logoLabel.grid(column = 0, row = 0, sticky = "w")
 
 
-cardsServicesWrapper = Frame(servicesInterface, bg = "#FF0000", relief = "flat", bd = 0)
+cardsServicesWrapper = Frame(servicesInterface, bg = "#FFF", relief = "flat", bd = 0)
 cardsServicesWrapper.place(relx = .5, rely = .5, anchor = CENTER)
 
-welcomingLabel = Label(cardsServicesWrapper, text = "Bem-Vindo(a) Fulano")
+welcomingLabel = Label(cardsServicesWrapper, text = "Bem-Vindo(a) Fulano", bg = "#FFF", font = (40))
 welcomingLabel.grid(column = 0, row = 0, columnspan = 5)
 
 cardWidth = int((width * 23) / 100)
 cardHeight = int((height * 63) / 100)
 
-firstService = Frame(cardsServicesWrapper, bg = "#000", bd = 0, cursor = "hand2", width = cardWidth, height = cardHeight)
+firstService = Frame(cardsServicesWrapper, bg = "#ededed", bd = 0, width = cardWidth, height = cardHeight)
 firstService.grid(column = 1, row = 1, padx = 5, pady = 20)
-secondService = Frame(cardsServicesWrapper, bg = "#FFF", bd = 0, cursor = "hand2", width = cardWidth, height = cardHeight)
+secondService = Frame(cardsServicesWrapper, bg = "#ededed", bd = 0, width = cardWidth, height = cardHeight)
 secondService.grid(column = 2, row = 1, padx = 5, pady = 20)
-thirdService = Frame(cardsServicesWrapper, bg = "#555", bd = 0, cursor = "hand2", width = cardWidth, height = cardHeight)
+thirdService = Frame(cardsServicesWrapper, bg = "#ededed", bd = 0, width = cardWidth, height = cardHeight)
 thirdService.grid(column = 3, row = 1, padx = 5, pady = 20)
-fourthService = Frame(cardsServicesWrapper, bg = "#9A9A9A", bd = 0, cursor = "hand2", width = cardWidth, height = cardHeight)
+fourthService = Frame(cardsServicesWrapper, bg = "#ededed", bd = 0, width = cardWidth, height = cardHeight)
 fourthService.grid(column = 4, row = 1, padx = 5, pady = 20)
-# TODO: Display elements
-# TODO: Calculate the elements measurements
+
+# Later: Add the imageLabel parameter
+def displayServicesElements(serviceCard, serviceDescription, buttonLabel):
+    serviceLabel = Label(serviceCard, text = serviceDescription, bg = "#ededed", font = (25))
+    serviceLabel.place(relx = .5, rely = .6, anchor = "center")
+    buttonService = Button(serviceCard, text = buttonLabel, bg = "#FFD600", activebackground = "#e8cd00", bd = 0, cursor = "hand2", font = (25), padx = 50, pady = 5)
+    buttonService.place(relx = .5, rely = .9, anchor = "s")
+
+displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar")
+displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar")
+displayServicesElements(thirdService, "Cadastre aqui os serviços disponíveis.", "Cadastrar")
+displayServicesElements(fourthService, "Edite ou exclua o cadastro do cliente.", "Editar")
 
 servicesInterface.mainloop()

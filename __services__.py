@@ -53,9 +53,29 @@ fourthService.grid(column = 4, row = 1, padx = 5, pady = 20)
 # Later: Add the imageLabel parameter
 def displayServicesElements(serviceCard, serviceDescription, buttonLabel):
     serviceLabel = Label(serviceCard, text = serviceDescription, bg = "#ededed", font = (25))
-    serviceLabel.place(relx = .5, rely = .6, anchor = "center")
-    buttonService = Button(serviceCard, text = buttonLabel, bg = "#FFD600", activebackground = "#e8cd00", bd = 0, cursor = "hand2", font = (25), padx = 50, pady = 5)
-    buttonService.place(relx = .5, rely = .9, anchor = "s")
+    serviceLabel.place(relx = .5, rely = .75, anchor = "center")
+    buttonService = Button(serviceCard, text = buttonLabel, bg = "#85D3FF", activebackground = "#76bce3", bd = 0, cursor = "hand2", font = (25), padx = 50, pady = 5)
+    buttonService.place(relx = .5, rely = .95, anchor = "s")
+
+# Temporary Solution
+
+firstServiceImage = PhotoImage(file = r"assets\imgs\sign-up-pets.png")
+firstImageLabel = Label(firstService, image = firstServiceImage, compound = "top")
+firstImageLabel.place(relx = .5, rely = .35, anchor = "center")
+
+secondServiceImage = PhotoImage(file = r"assets\imgs\schedule-services.png")
+secondImageLabel = Label(secondService, image = secondServiceImage, compound = "top")
+secondImageLabel.place(relx = .5, rely = .35, anchor = "center")
+
+thirdServiceImage = PhotoImage(file = r"assets\imgs\sign-up-services.png")
+thirdImageLabel = Label(thirdService, image = thirdServiceImage, compound = "top")
+thirdImageLabel.place(relx = .5, rely = .35, anchor = "center")
+
+fourthServiceImage = PhotoImage(file = r"assets\imgs\edit-delete.png")
+fourthImageLabel = Label(fourthService, image = fourthServiceImage, compound = "top")
+fourthImageLabel.place(relx = .5, rely = .35, anchor = "center")
+
+# End of Temporary Solution
 
 displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar")
 displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar")

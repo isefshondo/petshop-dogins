@@ -56,6 +56,9 @@ loginLogoFrame.grid(column = 1, row = 0)
 
 logoImage = PhotoImage(file = r"assets\imgs\logo-dogins.png")
 logoLabel = Label(loginLogoFrame, bg = "#FFF", image = logoImage)
-logoLabel.place(relx = .5, rely = .5, anchor = "center")
+logoLabel.place(relx = .5, rely = .45, anchor = "center")
+
+loginSloganLabel = Label(loginLogoFrame, text = "Acesse o petshop mais fashion para pets Auudaciosos", bg = "#FFF", font = ("Helvetica 10 bold"))
+loginSloganLabel.place(relx = .5, rely = .85, anchor = "center")
 
 loginInterface.mainloop()

@@ -57,7 +57,7 @@ def displayServicesElements(serviceCard, serviceDescription, buttonLabel):
     buttonService = Button(serviceCard, text = buttonLabel, bg = "#85D3FF", activebackground = "#76bce3", bd = 0, cursor = "hand2", font = (25), padx = 50, pady = 5)
     buttonService.place(relx = .5, rely = .95, anchor = "s")
 
-# Temporary Solution
+# Temporary Solution - TODO: Pass this to the function
 
 firstServiceImage = PhotoImage(file = r"assets\imgs\sign-up-pets.png")
 firstImageLabel = Label(firstService, image = firstServiceImage, compound = "top")

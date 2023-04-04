@@ -24,15 +24,19 @@ servicesInterface.geometry("%dx%d+%d+%d" % (width, height, posx, posy))
 servicesInterface.configure(bg = "#FFF")
 
 # Styling Services Interface
-logoLabel = Label(servicesInterface, text = "Dogin's")
-logoLabel.grid(column = 0, row = 0, sticky = "w")
-
+logoImageFile = PhotoImage(file = r"assets\imgs\secondary-logo.png")
+logoLabel = Label(servicesInterface, bg = "#FFF", image = logoImageFile, compound = "top")
+logoLabel.grid(column = 0, row = 0, padx = 80)
 
 cardsServicesWrapper = Frame(servicesInterface, bg = "#FFF", relief = "flat", bd = 0)
-cardsServicesWrapper.place(relx = .5, rely = .5, anchor = CENTER)
+cardsServicesWrapper.place(relx = .5, rely = .55, anchor = CENTER)
 
-welcomingLabel = Label(cardsServicesWrapper, text = "Bem-Vindo(a) Fulano", bg = "#FFF", font = (40))
+welcomingLabel = Label(cardsServicesWrapper, text = "Bem-Vindo(a) Fulano", bg = "#FFF", font = ("Helvetica 20 bold"))
 welcomingLabel.grid(column = 0, row = 0, columnspan = 5)
+
+heartIconImage = PhotoImage(file = r"assets\imgs\heart-icon.png")
+iconLabel = Label(cardsServicesWrapper, bg = "#FFF", image = heartIconImage, compound = "center")
+iconLabel.grid(column = 2, row = 0, columnspan = 5)
 
 cardWidth = int((width * 23) / 100)
 cardHeight = int((height * 63) / 100)

@@ -1,4 +1,5 @@
 from tkinter import*
+from PIL import Image, ImageTk
 Login=Tk()
 
 taskBarHeight = 40
@@ -23,10 +24,11 @@ Login.geometry("%dx%d+%d+%d" % (width, height, posx, posy))
 Login.configure(bg='#fff')
 
 #Estilização do Login
-
-#logo_dogins = PhotoImage(file = r"img/")
-#logo_dog = Label(singUpOwner, image = logo_dogins)
-#logo_dog.place(relx = .830, rely = .0, anchor = "n")
+logo_dogins_origin = Image.open("images/mainLogo.png")
+logo_resize = logo_dogins_origin.resize((140, 50), Image.ANTIALIAS)
+logoDogins = ImageTk.PhotoImage(logo_resize)
+logo_dog = Label(Login, image = logoDogins , bg="#fff")
+logo_dog.place(relx = .150, rely = .05, anchor = "n")
 
 #botao voltar ao menu
 btn_menu = Button(Login, text = "Voltar ao menu", bd = 0, bg = "#FFF", fg = "#777777", font = "Helvetica 10 underline", activebackground = "#FFF", activeforeground = "#777")
@@ -35,9 +37,11 @@ btn_menu.place(relx = .830, rely = .10, anchor = "n")
 #titulo dos serviços
 txt_titulo = Label(Login,text="Cadastro dos Serviços" ,bg = "#FFF", font=("Helvetica 13 bold"))
 txt_titulo.place(relx = .450, rely = .20, anchor = "n")
-#logo_coracao = PhotoImage(file = r"img/")
-#coracao = Label(singUpOwner, image = logo_coracao)
-#coracao.place(relx = .470, rely = .20, anchor = "n")
+logo_cora= Image.open("images/heart-icon.png")
+cora = logo_cora.resize((20, 15), Image.ANTIALIAS)
+logo_coracao = ImageTk.PhotoImage(cora)
+coracao = Label(Login, image = logo_coracao , bg="#fff")
+coracao.place(relx = .595, rely = .21, anchor = "n")
 
 #campo codigo do serviço
 txt_codigo = Label(Login,text="Código do Serviço" ,bg = "#FFF", font=("Helvetica 8"))
@@ -72,10 +76,12 @@ lbl_descricao.place(relx = .455, rely = .60, anchor = "n" ,  width="300" , heigh
 #botões de salvar alterar e excluir
 btn_salvar=Button(Login,text="Salvar", bg="#85d3ff")
 btn_salvar.place(relx = .330, rely = .85, anchor = "n",  width="90" , height="25")
-btn_alterar = Button(Login,text="Alterar")
-btn_alterar.place(relx= .480, rely=.85, anchor= "n",  width="90" , height="25")
-btn_alterar = Button(Login,text="Excluir")
-btn_alterar.place(relx= .630, rely=.85 , anchor= "n",  width="90" , height="25")
+bordaBtn = Frame(Login, bg = "#85d3ff")
+bordaBtn.place(relx= .480, rely=.85, anchor= "n",  width="90" , height="25")
+btn_alterar = Button(bordaBtn, text="Alterar")
+btn_alterar.pack(padx = .5, pady = .5 )
+btn_excluir = Button(Login,text="Excluir")
+btn_excluir.place(relx= .630, rely=.85 , anchor= "n",  width="90" , height="25")
 
 
 Login.mainloop()

@@ -76,10 +76,8 @@ lbl_descricao.place(relx = .455, rely = .60, anchor = "n" ,  width="300" , heigh
 #botões de salvar alterar e excluir
 btn_salvar=Button(Login,text="Salvar", bg="#85d3ff")
 btn_salvar.place(relx = .330, rely = .85, anchor = "n",  width="90" , height="25")
-bordaBtn = Frame(Login, bg = "#85d3ff")
-bordaBtn.place(relx= .480, rely=.85, anchor= "n",  width="90" , height="25")
-btn_alterar = Button(bordaBtn, text="Alterar")
-btn_alterar.pack(padx = .5, pady = .5 )
+btn_alterar = Button(Login, text="Alterar")
+btn_alterar.place(relx= .480, rely=.85, anchor= "n",  width="90" , height="25")
 btn_excluir = Button(Login,text="Excluir")
 btn_excluir.place(relx= .630, rely=.85 , anchor= "n",  width="90" , height="25")
 

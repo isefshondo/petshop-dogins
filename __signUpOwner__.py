@@ -8,6 +8,10 @@ signUpOwner.state("zoomed")
 signUpOwner.resizable(False, False)
 signUpOwner.configure(bg = "#FFF")
 
+signUpOwner.grid_columnconfigure(1, weight = 2)
+signUpOwner.grid_columnconfigure(2, weight = 1)
+signUpOwner.grid_rowconfigure(1, weight = 1)
+
 # Necessary Measurements
 width_screen = signUpOwner.winfo_screenwidth()
 height_screen = signUpOwner.winfo_screenheight()
@@ -26,6 +30,10 @@ goBackButton.grid(column = 2, row = 0, sticky = "nsew")
 
 mainElementsWrapper = Frame(signUpOwner, bd = 2, bg = "#FF0000", relief = "flat")
 mainElementsWrapper.grid(column = 0, row = 1, sticky = "nsew", columnspan = 3, padx = 20, pady = 20)
+mainElementsWrapper.grid_columnconfigure(0, weight = 1)
+mainElementsWrapper.grid_columnconfigure(1, weight = 2)
+mainElementsWrapper.grid_columnconfigure(2, weight = 1)
+mainElementsWrapper.grid_rowconfigure(1, weight = 1)
 
 interfaceDescription = Label(mainElementsWrapper, text = "Cadastro do Cliente", font = (35))
 interfaceDescription.grid(column = 0, row = 0, sticky = "we", columnspan = 3)
@@ -39,16 +47,19 @@ signUpFrame.grid(column = 1, row = 1, sticky = "nsew")
 accountInformation = Frame(mainElementsWrapper, bg = "#FFFF00")
 accountInformation.grid(column = 2, row = 1, sticky = "nsew")
 
-mainElementsWrapper.grid_columnconfigure(0, weight = 1)
-mainElementsWrapper.grid_columnconfigure(1, weight = 2)
-mainElementsWrapper.grid_columnconfigure(2, weight = 1)
-mainElementsWrapper.grid_rowconfigure(1, weight = 1)
-
-signUpOwner.grid_columnconfigure(1, weight = 2)
-signUpOwner.grid_columnconfigure(2, weight = 1)
-signUpOwner.grid_rowconfigure(1, weight = 1)
 
 # Image Upload
+widthPhoto = int((width_screen * 13) / 100)
+heightPhoto = int((height_screen * 27) / 100)
 
+defaultPhoto = Image.open("images/defaultPhoto.png")
+defaultPhotoSize = defaultPhoto.resize((widthPhoto, heightPhoto), Image.ANTIALIAS)
+defaultProfilePhoto = ImageTk.PhotoImage(defaultPhotoSize)
+
+defaultUploadLabel = Label(uploadImageFrame, image = defaultProfilePhoto)
+defaultUploadLabel.place(relx = .5, rely = .3, anchor = "center")
+
+uploadButton = Button(uploadImageFrame, text = "Upload de Imagem", bd = 0, bg = "#FFF", padx = 25, pady = 5)
+uploadButton.place(relx = .5, rely = .55, anchor = "center")
 
 signUpOwner.mainloop()

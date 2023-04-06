@@ -73,7 +73,7 @@ widthPhoto = int((width_screen * 13) / 100)
 heightPhoto = int((height_screen * 27) / 100)
 
 defaultPhoto = Image.open("images/defaultPhoto.png")
-defaultPhotoSize = defaultPhoto.resize((widthPhoto, heightPhoto), Image.ANTIALIAS)
+defaultPhotoSize = defaultPhoto.resize((widthPhoto, heightPhoto))
 defaultProfilePhoto = ImageTk.PhotoImage(defaultPhotoSize)
 
 defaultUploadLabel = Label(uploadImageFrame, image = defaultProfilePhoto)

@@ -82,4 +82,29 @@ signUpFrame.grid_columnconfigure(0, weight = 1)
 signUpFrame.grid_columnconfigure(1, weight = 1)
 signUpFrame.grid_columnconfigure(2, weight = 1)
 
+def displayFormElements(labelText, columnLabel, rowLabel, columnEntry, rowEntry, stickyEntry):
+    signUpLabel = Label(signUpFrame, text = labelText, bg = "#FFF")
+    if columnLabel == 1:
+      signUpLabel.grid(column = columnLabel, row = rowLabel, sticky = "w", padx = 20)
+    signUpLabel.grid(column = columnLabel, row = rowLabel, sticky = "w")
+    signUpEntry = Entry(signUpFrame)
+    if columnEntry == 1:
+       signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, padx = 20)
+    signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry)
+    if labelText == "Nome":
+       signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, padx = 20, columnspan = 2)
+    # if labelText == "Descrição":
+    #    signUpText = Text(signUpFrame)
+    #    signUpText.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, columnspan = 20)
+    if labelText == "Código de cadastro" or labelText == "Idade":
+       signUpEntry.config(state = "disabled")
+
+displayFormElements("Código de cadastro", 0, 0, 0, 1, "wn")
+displayFormElements("Data de nascimento", 0, 3, 0, 4, "wn")
+displayFormElements("Nome", 1, 0, 1, 1, "we")
+displayFormElements("Idade", 1, 3, 1, 4, "wn")
+displayFormElements("Raça", 1, 6, 1, 7, "we")
+displayFormElements("Peso", 2, 6, 2, 7, "wn")
+# displayFormElements("Descrição", 0, 9, 0, 10, "we")
+
 signUpPet.mainloop()

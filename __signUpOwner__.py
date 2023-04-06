@@ -31,21 +31,33 @@ goBackButton.grid(column = 2, row = 0, sticky = "nse", padx = 5)
 
 mainElementsWrapper = Frame(signUpOwner, bd = 2, bg = "#D9D9D9", relief = "flat")
 mainElementsWrapper.grid(column = 0, row = 1, sticky = "nsew", columnspan = 3, padx = 20, pady = 20)
+
 mainElementsWrapper.grid_columnconfigure(0, weight = 1)
 mainElementsWrapper.grid_columnconfigure(1, weight = 2)
 mainElementsWrapper.grid_columnconfigure(2, weight = 1)
 mainElementsWrapper.grid_rowconfigure(1, weight = 1)
 
-interfaceDescription = Label(mainElementsWrapper, text = "Cadastro do Cliente", bg = "#FFF", font = ("Open Sans", 35, "bold"))
-interfaceDescription.grid(column = 0, row = 0, sticky = "we", columnspan = 3)
+titleFrame = Frame(mainElementsWrapper, bg = "#FFF")
+titleFrame.grid(column = 0, row = 0, sticky = "we", columnspan = 3)
+
+titleFrame.grid_columnconfigure(0, weight = 1)
+titleFrame.grid_columnconfigure(1, weight = 1)
+titleFrame.grid_rowconfigure(0, weight = 1)
+
+heartIcon = PhotoImage(file = r"assets\imgs\heart-icon.png")
+heartIconLabel = Label(titleFrame, image = heartIcon, bg = "#FFF")
+heartIconLabel.grid(column = 1, row = 0, sticky = "w")
+
+interfaceDescription = Label(titleFrame, text = "Cadastro do Cliente", bg = "#FFF", font = ("Open Sans", 35, "bold"))
+interfaceDescription.grid(column = 0, row = 0, sticky = "e")
 
 uploadImageFrame = Frame(mainElementsWrapper, bg = "#FFF")
 uploadImageFrame.grid(column = 0, row = 1, sticky = "nsew")
 
-aTestingFrame = Frame(mainElementsWrapper, bg = "#FFF")
-aTestingFrame.grid(column = 1, row = 1, sticky = "nsew")
+signUpHolder = Frame(mainElementsWrapper, bg = "#FFF")
+signUpHolder.grid(column = 1, row = 1, sticky = "nsew")
 
-signUpFrame = Frame(aTestingFrame, bg = "#FFF")
+signUpFrame = Frame(signUpHolder, bg = "#FFF")
 signUpFrame.place(relx = .5, rely = .35, anchor = "center")
 
 signUpFrame.grid_columnconfigure(0, weight = 1)
@@ -53,10 +65,10 @@ signUpFrame.grid_columnconfigure(1, weight = 2)
 signUpFrame.grid_columnconfigure(2, weight = 2)
 signUpFrame.grid_columnconfigure(3, weight = 2)
 
-accountInformation = Frame(mainElementsWrapper, bg = "#FFFF00")
+accountInformation = Frame(mainElementsWrapper, bg = "#FFF")
 accountInformation.grid(column = 2, row = 1, sticky = "nsew")
 
-# Image Upload
+# Image Upload Frame
 widthPhoto = int((width_screen * 13) / 100)
 heightPhoto = int((height_screen * 27) / 100)
 
@@ -70,81 +82,39 @@ defaultUploadLabel.place(relx = .5, rely = .3, anchor = "center")
 uploadButton = Button(uploadImageFrame, text = "Upload de Imagem", bd = 0, bg = "#D5D5D5", padx = 25, pady = 5)
 uploadButton.place(relx = .5, rely = .55, anchor = "center")
 
-# Sign Up
-idClient = Label(signUpFrame, text = "Código do cliente", bg = "#FFF")
-idClient.grid(column = 0, row = 0, sticky = "w")
-borderEntryId = Frame(signUpFrame, bg = "#85D3FF")
-borderEntryId.grid(column = 0, row = 1, sticky = "we")
-idClientEntry = Entry(borderEntryId)
-idClientEntry.grid(column = 0, row = 0, padx = (1.5, 0))
+# Creating the Form Elements
+def displayInputElements(labelText, columnLabel, rowLabel, columnEntry, rowEntry, stickyEntry):
+    if columnLabel == 1 and columnEntry == 1:
+        signUpLabel = Label(signUpFrame, text = labelText, bg = "#FFF")
+        signUpLabel.grid(column = columnLabel, row = rowLabel, sticky = "w", padx = 20)
+        if labelText == "Nome" or labelText == "Endereço":
+            signUpEntry = Entry(signUpFrame)  
+            signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, columnspan = 2, padx = 20)
+        else:
+            signUpEntry = Entry(signUpFrame)  
+            signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, padx = 20)
+    else:
+        signUpLabel = Label(signUpFrame, text = labelText, bg = "#FFF")
+        signUpLabel.grid(column = columnLabel, row = rowLabel, sticky = "w")
+        signUpEntry = Entry(signUpFrame)
+        signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry)
+        if labelText == "Código do cliente":
+            signUpEntry.config(state = "disabled")
 
-nCpfClient = Label(signUpFrame, text = "CPF")
-nCpfClient.grid(column = 0, row = 3, sticky = "w")
-borderEntryCpf = Frame(signUpFrame, bg = "#85D3FF")
-borderEntryCpf.grid(column = 0, row = 4, sticky = "nwn")
-nCpfClientEntry = Entry(borderEntryCpf)
-nCpfClientEntry.grid(column = 0, row = 0, padx = (1.5, 0))
-
-nTelClient = Label(signUpFrame, text = "Telefone residencial")
-nTelClient.grid(column = 0, row = 6, sticky = "w")
-borderEntryNTel = Frame(signUpFrame, bg = "#85D3FF")
-borderEntryNTel.grid(column = 0, row = 7, sticky = "nwn")
-nTelClientEntry = Entry(borderEntryNTel)
-nTelClientEntry.grid(column = 0, row = 0, padx = (1.5, 0))
-
-nCepClient = Label(signUpFrame, text = "CEP")
-nCepClient.grid(column = 0, row = 9, sticky = "w")
-borderEntryCep = Frame(signUpFrame, bg = "#85D3FF")
-borderEntryCep.grid(column= 0, row = 10, sticky = "nwn")
-nCepClientEntry = Entry(borderEntryCep)
-nCepClientEntry.grid(column = 0, row = 0, padx = (1.5, 0))
-
-nHoodClient = Label(signUpFrame, text = "Bairro")
-nHoodClient.grid(column = 0, row = 12, sticky = "w")
-borderEntryNHood = Frame(signUpFrame, bg = "#85D3FF")
-borderEntryNHood.grid(column = 0, row = 13, sticky = "we")
-nHoodClientEntry = Entry(borderEntryNHood)
-nHoodClientEntry.grid(column = 0, row = 0, padx = (1.5, 0))
-
-nameClient = Label(signUpFrame, text = "Nome")
-nameClient.grid(column = 1, row = 0, sticky = "w", padx = 20)
-nameClientEntry = Entry(signUpFrame)
-nameClientEntry.grid(column = 1, row = 1, columnspan = 2, sticky = "we", padx = 20)
-
-birthDate = Label(signUpFrame, text = "Data de nascimento")
-birthDate.grid(column = 1, row = 3, sticky = "w", padx = 20)
-birthDateEntry = Entry(signUpFrame)
-birthDateEntry.grid(column = 1, row = 4, sticky = "we", padx = 20)
-
-ageClient = Label(signUpFrame, text = "Idade")
-ageClient.grid(column = 2, row = 3, sticky = "w")
-ageClientEntry = Entry(signUpFrame)
-ageClientEntry.grid(column = 2, row = 4, sticky = "wn")
-
-nPhoneClient = Label(signUpFrame, text = "Celular")
-nPhoneClient.grid(column = 1, row = 6, sticky = "w", padx = 20)
-nPhoneClientEntry = Entry(signUpFrame)
-nPhoneClientEntry.grid(column = 1, row = 7, sticky = "w", padx = 20)
-
-nAddressClient = Label(signUpFrame, text = "Endereço")
-nAddressClient.grid(column = 1, row = 9, sticky = "w", padx = 20)
-nAddressClientEntry = Entry(signUpFrame)
-nAddressClientEntry.grid(column = 1, row = 10, sticky = "we", columnspan = 2, padx = 20)
-
-nHouseClient = Label(signUpFrame, text = "Nº")
-nHouseClient.grid(column = 3, row = 9, sticky = "w")
-nHouseClientEntry = Entry(signUpFrame)
-nHouseClientEntry.grid(column = 3, row = 10, sticky = "w")
-
-cityClient = Label(signUpFrame, text = "Cidade")
-cityClient.grid(column = 1, row = 12, sticky = "w", padx = 20)
-cityClientEntry = Entry(signUpFrame)
-cityClientEntry.grid(column = 1, row = 13, sticky = "we", padx = 20)
-
-ufClient = Label(signUpFrame, text = "UF")
-ufClient.grid(column = 2, row = 12, sticky = "w")
-ufClientEntry = Entry(signUpFrame)
-ufClientEntry.grid(column = 2, row = 13, sticky = "w")
+# Displaying the elements in the Interface
+displayInputElements("Código do cliente", 0, 0, 0, 1, "we")
+displayInputElements("CPF", 0, 3, 0, 4, "nwn")
+displayInputElements("Telefone residencial", 0, 6, 0, 7, "nwn")
+displayInputElements("CEP", 0, 9, 0, 10, "nwn")
+displayInputElements("Bairro", 0, 12, 0, 13, "we")
+displayInputElements("Nome", 1, 0, 1, 1, "we")
+displayInputElements("Data de nascimento", 1, 3, 1, 4, "we")
+displayInputElements("Idade", 2, 3, 2, 4, "wn")
+displayInputElements("Celular", 1, 6, 1, 7 , "wn")
+displayInputElements("Endereço", 1, 9, 1, 10, "we")
+displayInputElements("Nº", 3, 9, 3, 10, "w")
+displayInputElements("Cidade", 1, 12, 1, 13, "we")
+displayInputElements("UF", 2, 12, 2, 13, "w")
 
 # Creating Blank Spaces Between Rows
 firstBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
@@ -158,8 +128,9 @@ thirdBlankSpace.grid(column = 0, row = 8, sticky = "nsew", columnspan = 4)
 
 fourthBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
 fourthBlankSpace.grid(column = 0, row = 11, sticky = "nsew", columnspan = 4)
+# End of Creating Blank Spaces Between Rows
 
-buttonWrapper = Frame(aTestingFrame, bg = "#FFF")
+buttonWrapper = Frame(signUpHolder, bg = "#FFF")
 buttonWrapper.place(relx = .5, rely = .85, anchor = "s")
 
 buttonWrapper.grid_columnconfigure(0, weight = 1)
@@ -180,23 +151,25 @@ deleteButton = Button(buttonWrapper, text = "Excluir", padx = 25, activebackgrou
 deleteButton.grid(column = 2, row = 0, padx = 50)
 
 # Account Info
-accountInformationHolder = Frame(accountInformation, bg = "#ff0000")
-accountInformationHolder.place(relx = .5, rely = .2, anchor = "center")
+accountInformationHolder = Frame(accountInformation, bg = "#FFF")
+accountInformationHolder.place(relx = .5, rely = .18, anchor = "center")
 
-accountInformation.grid_columnconfigure(0, weight = 1)
-accountInformation.grid_rowconfigure(0, weight = 0)
+accountInformationHolder.grid_columnconfigure(0, weight = 1)
+accountInformationHolder.grid_rowconfigure(2, weight = 1)
 
-updateDate = Label(accountInformationHolder, text = "Data de atualização")
+updateDate = Label(accountInformationHolder, text = "Data de atualização", bg = "#FFF")
 updateDate.grid(column = 0, row = 0, sticky = "w")
 updatDateEntry = Entry(accountInformationHolder)
+updatDateEntry.config(state = "disabled")
 updatDateEntry.grid(column = 0, row = 1, sticky = "we")
 
-updateBlankSpace = Frame(accountInformationHolder)
-updateBlankSpace.grid(column = 0, row = 2, sticky = "we")
+updateBlankSpace = Frame(accountInformationHolder, bg = "#FFF")
+updateBlankSpace.grid(column = 0, row = 2, sticky = "nsew")
 
-signUpDate = Label(accountInformationHolder, text = "Data de cadastro")
+signUpDate = Label(accountInformationHolder, text = "Data de cadastro", bg = "#FFF")
 signUpDate.grid(column = 0, row = 3, sticky = "w")
 signUpDateEntry = Entry(accountInformationHolder)
+signUpDateEntry.config(state = "disabled")
 signUpDateEntry.grid(column = 0, row = 4, sticky = "we")
 
 signUpOwner.mainloop()

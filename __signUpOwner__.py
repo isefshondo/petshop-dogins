@@ -179,4 +179,24 @@ updateButton.pack()
 deleteButton = Button(buttonWrapper, text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777")
 deleteButton.grid(column = 2, row = 0, padx = 50)
 
+# Account Info
+accountInformationHolder = Frame(accountInformation, bg = "#ff0000")
+accountInformationHolder.place(relx = .5, rely = .2, anchor = "center")
+
+accountInformation.grid_columnconfigure(0, weight = 1)
+accountInformation.grid_rowconfigure(0, weight = 0)
+
+updateDate = Label(accountInformationHolder, text = "Data de atualização")
+updateDate.grid(column = 0, row = 0, sticky = "w")
+updatDateEntry = Entry(accountInformationHolder)
+updatDateEntry.grid(column = 0, row = 1, sticky = "we")
+
+updateBlankSpace = Frame(accountInformationHolder)
+updateBlankSpace.grid(column = 0, row = 2, sticky = "we")
+
+signUpDate = Label(accountInformationHolder, text = "Data de cadastro")
+signUpDate.grid(column = 0, row = 3, sticky = "w")
+signUpDateEntry = Entry(accountInformationHolder)
+signUpDateEntry.grid(column = 0, row = 4, sticky = "we")
+
 signUpOwner.mainloop()

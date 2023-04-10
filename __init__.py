@@ -29,10 +29,10 @@ loginFormFrame.grid(column = 0, row = 0)
 
 heartIconImage = PhotoImage(file = r"assets\imgs\heart-icon.png")
 iconLabel = Label(loginFormFrame, bg = "#FFF", image = heartIconImage, compound = "center")
-iconLabel.place(relx = .45, rely = .15, anchor = "n")
+iconLabel.place(relx = .55, rely = .15, anchor = "n")
 
 welcomingLabel = Label(loginFormFrame, text = "Faça seu Login", bg = "#FFF", font = (35))
-welcomingLabel.place(relx = .238, rely = .15, anchor = "n")
+welcomingLabel.place(relx = .280, rely = .15, anchor = "n")
 
 userLabel = Label(loginFormFrame, text = "Usuário", bg = "#FFF")
 userLabel.place(relx = .15, rely = .25, anchor = "n")
@@ -58,7 +58,7 @@ logoImage = PhotoImage(file = r"assets\imgs\logo-dogins.png")
 logoLabel = Label(loginLogoFrame, bg = "#FFF", image = logoImage)
 logoLabel.place(relx = .5, rely = .45, anchor = "center")
 
-loginSloganLabel = Label(loginLogoFrame, text = "Acesse o petshop mais fashion para pets Auudaciosos", bg = "#FFF", font = ("Helvetica 10 bold"))
+loginSloganLabel = Label(loginLogoFrame, text = "Petshop para pets Auudaciosos", bg = "#FFF", font = ("Helvetica 10 bold"))
 loginSloganLabel.place(relx = .5, rely = .85, anchor = "center")
 
 loginInterface.mainloop()

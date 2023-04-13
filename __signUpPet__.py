@@ -32,7 +32,7 @@ goBackButton.grid(column = 2, row = 0, sticky = "nse", padx = (0, 5))
 # End of the Header
 
 # Body of the application
-elementsHolder = Frame(signUpPet, bd = 2, bg = "#D9D9D9", relief = "flat")
+elementsHolder = Frame(signUpPet, bd = 2, relief = "flat")
 elementsHolder.grid(column = 0, row = 1, sticky = "nsew", columnspan = 3, padx = 20, pady = 20)
 
 elementsHolder.grid_columnconfigure(0, weight = 1)
@@ -56,14 +56,14 @@ mainHeartHolder = Label(mainTitleHolder, image = mainHeartIcon, bg = "#FFF")
 mainHeartHolder.grid(column = 1, row = 0, sticky = "w")
 
 # Upload Image Frame
-uploadImgFrame = Frame(elementsHolder, bg = "#FFFF00")
+uploadImgFrame = Frame(elementsHolder)
 uploadImgFrame.grid(column = 0, row = 1, sticky = "nsew")
 
-widthPhoto = int((width_screen * 13) / 100)
-heightPhoto = int((height_screen * 27) / 100)
+widthPhoto = 1366
+heightPhoto = 768
 
 defaultPhoto = Image.open("images/defaultPhotoPet.png")
-defaultPhotoSize = defaultPhoto.resize((widthPhoto, heightPhoto))
+defaultPhotoSize = defaultPhoto.resize(( 170,200))
 defaultProfilePhoto = ImageTk.PhotoImage(defaultPhotoSize)
 defaultUploadLabel = Label(uploadImgFrame, image = defaultProfilePhoto)
 defaultUploadLabel.place(relx = .5, rely = .3, anchor = "center")
@@ -72,7 +72,7 @@ uploadButton = Button(uploadImgFrame, text = "Upload de Imagem", activebackgroun
 uploadButton.place(relx = .5, rely = .55, anchor = "center")
 
 # Sign Up Frame
-signUpPetFrame = Frame(elementsHolder, bg = "#993399")
+signUpPetFrame = Frame(elementsHolder)
 signUpPetFrame.grid(column = 1, row = 1, sticky = "nsew")
 
 signUpFrame = Frame(signUpPetFrame, bg = "#FFF")
@@ -105,6 +105,24 @@ displayFormElements("Nome", 1, 0, 1, 1, "we")
 displayFormElements("Idade", 1, 3, 1, 4, "wn")
 displayFormElements("Raça", 1, 6, 1, 7, "we")
 displayFormElements("Peso", 2, 6, 2, 7, "wn")
+
+#criando botao radio da especie
+lbl_especie = Label(signUpPet, text="Espécie", bg="#fff").place(relx = .360, rely = .51, anchor = "n")
+var2=StringVar()
+var2.set("c")
+rdb_btn_c = Radiobutton(signUpPet, text="Cachorro", variable=var2, value="c", bg="#fff")
+rdb_btn_g = Radiobutton(signUpPet, text="Gato", variable=var2, value="g", bg="#fff")
+rdb_btn_c.place(relx = .363, rely = .59, anchor = "n")
+rdb_btn_g.place(relx = .363, rely = .59, anchor = "n")
+
+#Descrição
+txt_descricao = Label(signUpPet,text="Descrição" ,bg = "#FFF", font=("Helvetica 10"))
+txt_descricao.place(relx = .363, rely = .59, anchor = "n")
+lbl_descricao = Entry(signUpPet)
+lbl_descricao.place(relx = .500, rely = .62, anchor = "n" ,  width="420" , height="70")
+
+
+
 # displayFormElements("Descrição", 0, 9, 0, 10, "we")
 
 signUpPet.mainloop()

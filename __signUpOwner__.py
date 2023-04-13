@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import filedialog
 from PIL import Image, ImageTk
 
 signUpOwner = Tk()
@@ -68,7 +69,8 @@ signUpFrame.grid_columnconfigure(3, weight = 2)
 accountInformation = Frame(mainElementsWrapper, bg = "#FFF")
 accountInformation.grid(column = 2, row = 1, sticky = "nsew")
 
-# Image Upload Frame
+
+# Imagem inicial
 widthPhoto = int((width_screen * 13) / 100)
 heightPhoto = int((height_screen * 27) / 100)
 
@@ -79,8 +81,30 @@ defaultProfilePhoto = ImageTk.PhotoImage(defaultPhotoSize)
 defaultUploadLabel = Label(uploadImageFrame, image = defaultProfilePhoto)
 defaultUploadLabel.place(relx = .5, rely = .3, anchor = "center")
 
-uploadButton = Button(uploadImageFrame, text = "Upload de Imagem", bd = 0, bg = "#D5D5D5", padx = 25, pady = 5)
+# Image Upload Frame
+widthPhoto = 1366
+heightPhoto = 768
+
+pasta_inicial=""
+def escolher_imagem():
+    caminho_imagem = filedialog.askopenfilename(initialdir=pasta_inicial, title="Escolha uma imagem",
+                                                filetypes=(("Arquivos de imagem", "*.jpg;*.jpeg;*.png"),
+                                                           ("Todos os arquivos", "*.*")))
+    imagem_pil = Image.open(caminho_imagem)
+    largura, altura = imagem_pil.size
+    if altura > 200:
+        proporcao = altura / 200
+        nova_altura = int(altura / proporcao)
+        imagem_pil = imagem_pil.resize((170, nova_altura))
+    imagem_tk = ImageTk.PhotoImage(imagem_pil)
+    lbl_imagem = Label(signUpOwner, image=imagem_tk)
+    lbl_imagem.image = imagem_tk
+    lbl_imagem.place(relx = .7/5, rely = .44, anchor = "center")
+
+uploadButton = Button(uploadImageFrame, text = "Upload de Imagem", command=escolher_imagem)
 uploadButton.place(relx = .5, rely = .55, anchor = "center")
+
+
 
 # Creating the Form Elements
 def displayInputElements(labelText, columnLabel, rowLabel, columnEntry, rowEntry, stickyEntry):

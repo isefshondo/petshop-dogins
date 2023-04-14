@@ -7,14 +7,14 @@ servicesInterface = Tk()
 def go_register():
     subprocess.run(["python", "__signUpOwner__.py"])
 
-def abrir_tela_animais():
-    subprocess.run(["python", "__menu__.py"])
-
-def abrir_tela_clientes():
+def pet():
     subprocess.run(["python", "__signUpPet__.py"])
 
-def abrir_tela_servicos():
-    subprocess.run(["python", "__init__.py"])
+def owner():
+    subprocess.run(["python", "__signUpOwner__.py"])
+
+def services():
+    subprocess.run(["python", "_services_.py"])
 
 def sair_tela():
     servicesInterface.destroy()
@@ -56,7 +56,7 @@ welcomingLabel.grid(column = 0, row = 0, columnspan = 5)
 
 heartIconImage = PhotoImage(file = r"assets\imgs\heart-icon.png")
 iconLabel = Label(cardsServicesWrapper, bg = "#FFF", image = heartIconImage, compound = "center")
-iconLabel.grid(column = 2, row = 0, columnspan = 5)
+iconLabel.place(relx= .65, rely = .0)
 
 cardWidth = int((width * 23) / 100)
 cardHeight = int((height * 63) / 100)
@@ -97,9 +97,9 @@ fourthImageLabel.place(relx = .5, rely = .35, anchor = "center")
 
 # End of Temporary Solution
 
-displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar", abrir_tela_animais)
-displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar", abrir_tela_clientes)
+displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar", pet)
+displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar", owner)
 displayServicesElements(thirdService, "Cadastre aqui os serviços disponíveis.", "Cadastrar", go_register)
-displayServicesElements(fourthService, "Edite ou exclua o cadastro do cliente.", "Editar", abrir_tela_servicos)
+displayServicesElements(fourthService, "Edite ou exclua o cadastro do cliente.", "Editar", services)
 
 servicesInterface.mainloop()

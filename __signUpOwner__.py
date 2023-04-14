@@ -1,6 +1,13 @@
 from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageTk
+import subprocess
+
+def ir_menu():
+    subprocess.run(["python", "__menu__.py"])
+
+def pet():
+    subprocess.run(["python", "__signUpPet__.py"])
 
 signUpOwner = Tk()
 
@@ -26,7 +33,7 @@ progressBarImage = PhotoImage(file = r"images\progressBar.png")
 progressBarHolder = Label(signUpOwner, image = progressBarImage, bg = "#FFF")
 progressBarHolder.grid(column = 1, row = 0, sticky = "nsew")
 
-goBackButton = Button(signUpOwner, text = "Voltar ao menu", activebackground = "#FFF", activeforeground = "#777", bg = "#FFF", fg = "#777", font = ("Open Sans", 18, "underline"), bd = 0)
+goBackButton = Button(signUpOwner, text = "Voltar ao menu", activebackground = "#FFF", activeforeground = "#777", bg = "#FFF", fg = "#777", font = ("Open Sans", 16, "underline"), bd = 0, command=ir_menu)
 goBackButton.grid(column = 2, row = 0, sticky = "nse", padx = 5)
 # End of the Sign Up's Page Header
 
@@ -159,8 +166,8 @@ buttonWrapper.grid_columnconfigure(1, weight = 1)
 buttonWrapper.grid_columnconfigure(2, weight = 1)
 buttonWrapper.grid_rowconfigure(0, weight = 1)
 
-saveButton = Button(buttonWrapper, text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0)
-saveButton.grid(column = 0, row = 0, padx = 50)
+saveButton = Button(buttonWrapper, text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0, command=pet)
+saveButton.grid(column = 2, row = 0, padx = 50)
 
 borderButton = Frame(buttonWrapper, bg = "#85D3FF", padx = 1.5, pady = 1.5)
 borderButton.grid(column = 1, row = 0, padx = 50)
@@ -169,7 +176,7 @@ updateButton = Button(borderButton, text = "Alterar", padx = 30, activebackgroun
 updateButton.pack()
 
 deleteButton = Button(buttonWrapper, text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777")
-deleteButton.grid(column = 2, row = 0, padx = 50)
+deleteButton.grid(column = 0, row = 0, padx = 50)
 
 # Account Info
 accountInformationHolder = Frame(accountInformation, bg = "#FFF")

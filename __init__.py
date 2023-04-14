@@ -1,4 +1,11 @@
 from tkinter import *
+import subprocess
+
+def entrar():
+    subprocess.run(["python", "__menu__.py"])
+
+def sair():
+    loginInterface.quit()
 
 loginInterface = Tk()
 
@@ -44,10 +51,10 @@ passwordLabel.place(relx = .138, rely = .45, anchor = "n")
 passwordTextBox = Entry(loginFormFrame, width = 50)
 passwordTextBox.place(relx = .09, rely = .52)
 
-signInButton = Button(loginFormFrame, text = "Entrar", activebackground = "#76bce3", bd = 0, bg = "#85D3FF", font = (25), padx = 65, pady = 5)
+signInButton = Button(loginFormFrame, text = "Entrar", activebackground = "#76bce3", bd = 0, bg = "#85D3FF", font = (25), padx = 65, pady = 5, command=entrar)
 signInButton.place(relx = .5, rely = .75, anchor = "center")
 
-closeLoginInterface = Button(loginFormFrame, text = "Sair da plataforma", activebackground = "#FFF", bg = "#FFF", bd = 0, font = ("Helvetica 12 underline"), activeforeground = "#777777", fg = "#777777")
+closeLoginInterface = Button(loginFormFrame, text = "Sair da plataforma", activebackground = "#FFF", bg = "#FFF", bd = 0, font = ("Helvetica 12 underline"), activeforeground = "#777777", fg = "#777777", command=sair)
 closeLoginInterface.place(relx = .5, rely = .85, anchor = "center")
 
 # Styling Logo Frame

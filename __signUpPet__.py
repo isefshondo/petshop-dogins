@@ -2,6 +2,13 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
 from PIL import Image, ImageTk
+import subprocess
+
+def ir_menu():
+    subprocess.run(["python", "__menu__.py"])
+
+def services():
+    subprocess.run(["python", "_services_.py"])
 
 signUpPet = Tk()
 
@@ -29,7 +36,7 @@ progressBarImage = PhotoImage(file = r"images\secondProgressBar.png")
 progressBarHolder = Label(signUpPet, image = progressBarImage, bg = "#FFF")
 progressBarHolder.grid(column = 1, row = 0, sticky = "nsew")
 
-goBackButton = Button(signUpPet, text = "Voltar ao menu", activebackground = "#FFF", activeforeground = "#777", bd = 0, bg = "#FFF", fg = "#777", font = ("Open Sans", 18, "underline"))
+goBackButton = Button(signUpPet, text = "Voltar ao menu", activebackground = "#FFF", activeforeground = "#777", bd = 0, bg = "#FFF", fg = "#777", font = ("Open Sans", 16, "underline"), command=ir_menu)
 goBackButton.grid(column = 2, row = 0, sticky = "nse", padx = (0, 5))
 # End of the Header
 
@@ -56,6 +63,20 @@ mainTitleDesc.grid(column = 0, row = 0, sticky = "e")
 mainHeartIcon = PhotoImage(file = r"assets\imgs\heart-icon.png")
 mainHeartHolder = Label(mainTitleHolder, image = mainHeartIcon, bg = "#FFF")
 mainHeartHolder.grid(column = 1, row = 0, sticky = "w")
+
+
+saveButton = Button( text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0, command=services)
+saveButton.place(relx = .60, rely = .850)
+
+borderButton = Frame( bg = "#85D3FF", padx = 1.5, pady = 1.5) #nao funciona
+borderButton.place(relx = .45, rely = .850)
+
+updateButton = Button( text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF")
+updateButton.place(relx = .45, rely = .850)
+
+deleteButton = Button( text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777")
+deleteButton.place(relx = .30, rely = .850)
+
 
 # Date Info
 accountInformationHolder = Frame( bg = "#FFF")

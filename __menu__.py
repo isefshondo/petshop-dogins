@@ -7,6 +7,15 @@ servicesInterface = Tk()
 def go_register():
     subprocess.run(["python", "__signUpOwner__.py"])
 
+def abrir_tela_animais():
+    subprocess.run(["python", "__menu__.py"])
+
+def abrir_tela_clientes():
+    subprocess.run(["python", "__signUpPet__.py"])
+
+def abrir_tela_servicos():
+    subprocess.run(["python", "__init__.py"])
+
 def sair_tela():
     servicesInterface.destroy()
     return
@@ -62,10 +71,10 @@ fourthService = Frame(cardsServicesWrapper, bg = "#ededed", bd = 0, width = card
 fourthService.grid(column = 4, row = 1, padx = 5, pady = 20)
 
 # Later: Add the imageLabel parameter
-def displayServicesElements(serviceCard, serviceDescription, buttonLabel):
-    serviceLabel = Label(serviceCard, text = serviceDescription, bg = "#ededed", font = (25))
+def displayServicesElements(serviceCard, serviceDescription, buttonLabel, pathButton):
+    serviceLabel = Label(serviceCard, text = serviceDescription, bg = "#ededed")
     serviceLabel.place(relx = .5, rely = .75, anchor = "center")
-    buttonService = Button(serviceCard, text = buttonLabel, bg = "#85D3FF", activebackground = "#76bce3", bd = 0, cursor = "hand2", font = (25), padx = 50, pady = 5)
+    buttonService = Button(serviceCard, text = buttonLabel, bg = "#85D3FF", activebackground = "#76bce3", bd = 0, cursor = "hand2", padx = 50, pady = 5, command=pathButton)
     buttonService.place(relx = .5, rely = .95, anchor = "s")
 
 # Temporary Solution - TODO: Pass this to the function
@@ -88,9 +97,9 @@ fourthImageLabel.place(relx = .5, rely = .35, anchor = "center")
 
 # End of Temporary Solution
 
-displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar")
-displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar")
-displayServicesElements(thirdService, "Cadastre aqui os serviços disponíveis.", "Cadastrar")
-displayServicesElements(fourthService, "Edite ou exclua o cadastro do cliente.", "Editar")
+displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar", abrir_tela_animais)
+displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar", abrir_tela_clientes)
+displayServicesElements(thirdService, "Cadastre aqui os serviços disponíveis.", "Cadastrar", go_register)
+displayServicesElements(fourthService, "Edite ou exclua o cadastro do cliente.", "Editar", abrir_tela_servicos)
 
 servicesInterface.mainloop()

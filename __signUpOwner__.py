@@ -69,7 +69,6 @@ signUpFrame.grid_columnconfigure(3, weight = 2)
 accountInformation = Frame(mainElementsWrapper, bg = "#FFF")
 accountInformation.grid(column = 2, row = 1, sticky = "nsew")
 
-
 # Imagem inicial
 widthPhoto = int((width_screen * 13) / 100)
 heightPhoto = int((height_screen * 27) / 100)
@@ -103,8 +102,6 @@ def escolher_imagem():
 
 uploadButton = Button(uploadImageFrame, text = "Upload de Imagem", command=escolher_imagem)
 uploadButton.place(relx = .5, rely = .55, anchor = "center")
-
-
 
 # Creating the Form Elements
 def displayInputElements(labelText, columnLabel, rowLabel, columnEntry, rowEntry, stickyEntry):

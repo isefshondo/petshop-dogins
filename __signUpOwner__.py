@@ -5,6 +5,10 @@ import subprocess
 
 def ir_menu():
     subprocess.run(["python", "__menu__.py"])
+    signUpOwner.quit()
+
+def success():
+    subprocess.run(["python", "success.py"])
 
 def pet():
     subprocess.run(["python", "__signUpPet__.py"])
@@ -172,10 +176,10 @@ saveButton.grid(column = 2, row = 0, padx = 50)
 borderButton = Frame(buttonWrapper, bg = "#85D3FF", padx = 1.5, pady = 1.5)
 borderButton.grid(column = 1, row = 0, padx = 50)
 
-updateButton = Button(borderButton, text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF")
+updateButton = Button(borderButton, text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF", command=success)
 updateButton.pack()
 
-deleteButton = Button(buttonWrapper, text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777")
+deleteButton = Button(buttonWrapper, text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777", command=success)
 deleteButton.grid(column = 0, row = 0, padx = 50)
 
 # Account Info

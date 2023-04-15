@@ -4,11 +4,9 @@ import subprocess
 servicesInterface = Tk()
 
 #funcAO para redirecionar
-def go_register():
-    subprocess.run(["python", "__signUpOwner__.py"])
 
-def pet():
-    subprocess.run(["python", "__signUpPet__.py"])
+def table():
+    subprocess.run(["python", "agenda.py"])
 
 def owner():
     subprocess.run(["python", "__signUpOwner__.py"])
@@ -97,9 +95,9 @@ fourthImageLabel.place(relx = .5, rely = .35, anchor = "center")
 
 # End of Temporary Solution
 
-displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar", pet)
-displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar", owner)
-displayServicesElements(thirdService, "Cadastre aqui os serviços disponíveis.", "Cadastrar", go_register)
-displayServicesElements(fourthService, "Edite ou exclua o cadastro do cliente.", "Editar", services)
+displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar", owner)
+displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar", table)
+displayServicesElements(thirdService, "Cadastre aqui os serviços disponíveis.", "Cadastrar", services)
+displayServicesElements(fourthService, "Edite ou exclua o cadastro do cliente.", "Editar", table)
 
 servicesInterface.mainloop()

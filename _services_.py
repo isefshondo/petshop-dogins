@@ -1,5 +1,14 @@
 from tkinter import*
 from PIL import Image, ImageTk
+import subprocess
+
+def ir_menu():
+    subprocess.run(["python", "__menu__.py"])
+    Login.quit()
+
+def success():
+    subprocess.run(["python", "success.py"])
+
 Login=Tk()
 
 taskBarHeight = 40
@@ -11,8 +20,8 @@ Login.resizable(False, False)
 width_screen = Login.winfo_screenwidth()
 height_screen = Login.winfo_screenheight() - taskBarHeight
 
-width = 1240
-height = 790
+width = 870
+height = 570
 
 posx = (width_screen / 2) - (width / 2)
 posy = (height_screen / 2) - (height / 2)
@@ -25,13 +34,13 @@ Login.configure(bg='#fff')
 
 #Estilização do Login
 logo_dogins_origin = Image.open("images/mainLogo.png")
-logo_resize = logo_dogins_origin.resize((140, 50), Image.ANTIALIAS)
+logo_resize = logo_dogins_origin.resize((160, 40), Image.ANTIALIAS)
 logoDogins = ImageTk.PhotoImage(logo_resize)
 logo_dog = Label(Login, image = logoDogins , bg="#fff")
 logo_dog.place(relx = .150, rely = .10, anchor = "n")
 
 #botao voltar ao menu
-btn_menu = Button(Login, text = "Voltar ao menu", bd = 0, bg = "#FFF", fg = "#777777", font = "Helvetica 10 underline", activebackground = "#FFF", activeforeground = "#777")
+btn_menu = Button(Login, text = "Voltar ao menu", bd = 0, bg = "#FFF", fg = "#777777", font = "Helvetica 16 underline", activebackground = "#FFF", activeforeground = "#777", command=ir_menu)
 btn_menu.place(relx = .830, rely = .10, anchor = "n")
 
 #titulo dos serviços
@@ -41,45 +50,45 @@ logo_cora= Image.open("images/heart-icon.png")
 cora = logo_cora.resize((20, 15), Image.ANTIALIAS)
 logo_coracao = ImageTk.PhotoImage(cora)
 coracao = Label(Login, image = logo_coracao , bg="#fff")
-coracao.place(relx = .585, rely = .21, anchor = "n")
+coracao.place(relx = .65, rely = .22, anchor = "n")
 
 #campo codigo do serviço
-txt_codigo = Label(Login,text="Código do Serviço" ,bg = "#FFF", font=("Helvetica 10"))
-txt_codigo.place(relx = .350, rely = .30, anchor = "n")
+txt_codigo = Label(Login,text="Código do Serviço" ,bg = "#FFF")
+txt_codigo.place(relx = .270, rely = .30, anchor = "n")
 lbl_codigo = Entry(Login)
-lbl_codigo.place(relx = .360, rely = .33, anchor = "n" ,  width="130" , height="20")
+lbl_codigo.place(relx = .285, rely = .34, anchor = "n" ,  width="130" , height="20")
 
 #campo nome
-txt_nome = Label(Login,text="Nome" ,bg = "#FFF", font=("Helvetica 10"))
-txt_nome.place(relx = .500, rely = .30, anchor = "n")
-lbl_nome = Entry(Login)
-lbl_nome.place(relx = .560, rely = .33, anchor = "n" ,  width="190" , height="20")
+txt_nome = Label(Login,text="Nome do serviço prestado" ,bg = "#FFF")
+txt_nome.place(relx = .550, rely = .30, anchor = "n")
+lbl_nome = Entry(Login,   width="50")
+lbl_nome.place(relx = .635, rely = .34, anchor = "n")
 
 #campo valor
-txt_valor = Label(Login,text="Valor" ,bg = "#FFF", font=("Helvetica 10"))
-txt_valor.place(relx = .320, rely = .40, anchor = "n")
+txt_valor = Label(Login,text="Valor" ,bg = "#FFF")
+txt_valor.place(relx = .235, rely = .40, anchor = "n")
 lbl_valor = Entry(Login)
-lbl_valor.place(relx = .345, rely = .43, anchor = "n",  width="90" , height="20")
+lbl_valor.place(relx = .265, rely = .44, anchor = "n",  width="90" , height="20")
 
 #campo tempo de duração
-txt_duracao = Label(Login,text="Tempo de duração" ,bg = "#FFF", font=("Helvetica 10"))
+txt_duracao = Label(Login,text="Tempo de duração" ,bg = "#FFF")
 txt_duracao.place(relx = .525, rely = .40, anchor = "n")
 lbl_duracao = Entry(Login)
-lbl_duracao.place(relx = .530, rely = .43, anchor = "n",  width="120" , height="20")
+lbl_duracao.place(relx = .530, rely = .44, anchor = "n",  width="120" , height="20")
 
 #Descrição
-txt_descricao = Label(Login,text="Descrição" ,bg = "#FFF", font=("Helvetica 10"))
-txt_descricao.place(relx = .335, rely = .50, anchor = "n")
-lbl_descricao = Entry(Login)
-lbl_descricao.place(relx = .470, rely = .53, anchor = "n" ,  width="400" , height="50")
+txt_descricao = Label(Login,text="Descrição" ,bg = "#FFF")
+txt_descricao.place(relx = .245, rely = .50, anchor = "n")
+lbl_descricao = Text(Login)
+lbl_descricao.place(relx = .470, rely = .54, anchor = "n" ,  width="450" , height="80")
 
 #botões de salvar alterar e excluir
-btn_salvar=Button(Login,text="Salvar", bg="#85d3ff")
-btn_salvar.place(relx = .330, rely = .75, anchor = "n",  width="80" , height="25")
-btn_alterar = Button(Login, text="Alterar")
-btn_alterar.place(relx= .480, rely=.75, anchor= "n",  width="80" , height="25")
-btn_excluir = Button(Login,text="Excluir")
-btn_excluir.place(relx= .630, rely=.75 , anchor= "n",  width="80" , height="25")
+btn_salvar=Button(Login,text="Salvar", bg="#85d3ff", command=success)
+btn_salvar.place(relx = .330, rely = .85, anchor = "n",  width="100" , height="25")
+btn_alterar = Button(Login, text="Alterar", command=success)
+btn_alterar.place(relx= .480, rely=.85, anchor= "n",  width="100" , height="25")
+btn_excluir = Button(Login,text="Excluir", command=success)
+btn_excluir.place(relx= .630, rely=.85 , anchor= "n",  width="100" , height="25")
 
 
 Login.mainloop()

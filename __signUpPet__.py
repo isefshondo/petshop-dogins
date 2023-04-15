@@ -6,14 +6,21 @@ import subprocess
 
 def ir_menu():
     subprocess.run(["python", "__menu__.py"])
+    signUpPet.quit()
 
-def services():
-    subprocess.run(["python", "_services_.py"])
+def agendar():
+    subprocess.run(["python", "agendamento.py"])
+
+def success():
+    subprocess.run(["python", "success.py"])
 
 signUpPet = Tk()
 
 signUpPet.title("Petshop Dogin's")
-signUpPet.state("zoomed")
+# signUpPet.state("zoomed")
+width = 1100
+height = 680
+
 signUpPet.resizable(False, False)
 signUpPet.configure(bg = "#FFF")
 
@@ -26,6 +33,11 @@ signUpPet.grid_rowconfigure(1, weight = 1)
 # Measurements
 width_screen = signUpPet.winfo_screenwidth()
 height_screen = signUpPet.winfo_screenheight()
+
+posx = (width_screen / 2) - (width / 2)
+posy = (height_screen / 2) - (height / 2)
+
+signUpPet.geometry("%dx%d+%d+%d" % (width, height, posx, posy))
 
 #Header of the Sign Up Pet Interface
 mainLogoImage = PhotoImage(file = r"images\mainLogo.png")
@@ -65,16 +77,16 @@ mainHeartHolder = Label(mainTitleHolder, image = mainHeartIcon, bg = "#FFF")
 mainHeartHolder.grid(column = 1, row = 0, sticky = "w")
 
 
-saveButton = Button( text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0, command=services)
+saveButton = Button( text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0, command=agendar)
 saveButton.place(relx = .60, rely = .850)
 
 borderButton = Frame( bg = "#85D3FF", padx = 1.5, pady = 1.5) #nao funciona
 borderButton.place(relx = .45, rely = .850)
 
-updateButton = Button( text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF")
+updateButton = Button( text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF", command=success)
 updateButton.place(relx = .45, rely = .850)
 
-deleteButton = Button( text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777")
+deleteButton = Button( text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777", command=success)
 deleteButton.place(relx = .30, rely = .850)
 
 
@@ -172,11 +184,11 @@ displayFormElements("Peso", 2, 6, 2, 7, "wn")
 
 #comboBox especies
 list_especies = ["Gato", "Cachorro"]
-lbl_especies = Label(signUpPet, text="Especies")
-lbl_especies.place(relx=.33, rely=.27)
-cb_especies = ttk.Combobox(signUpPet, values=list_especies)
+lbl_especies = Label(signUpFrame, text="Especies")
+lbl_especies.grid(column=0, row = 6, sticky="w")
+cb_especies = ttk.Combobox(signUpFrame, values=list_especies)
 cb_especies.set("Cachorro")
-cb_especies.place(relx=.33, rely=.30)
+cb_especies.grid(column=0, row = 7)
 
 #Descrição
 txt_descricao = Label(signUpPet,text="Descrição" ,bg = "#FFF", font=("Helvetica 10"))
@@ -184,6 +196,15 @@ txt_descricao.place(relx = .363, rely = .59, anchor = "n")
 lbl_descricao = Entry(signUpPet)
 lbl_descricao.place(relx = .500, rely = .62, anchor = "n" ,  width="420" , height="70")
 
-# displayFormElements("Descrição", 0, 9, 0, 10, "we")
+firstBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
+firstBlankSpace.grid(column = 0, row = 2, sticky = "nsew", columnspan = 4)
+
+secondBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
+secondBlankSpace.grid(column = 0, row = 5, sticky = "nsew", columnspan = 4)
+
+thirdBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
+thirdBlankSpace.grid(column = 0, row = 8, sticky = "nsew", columnspan = 4)
+
+#data
 
 signUpPet.mainloop()

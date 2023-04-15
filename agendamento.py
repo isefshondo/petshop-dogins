@@ -25,13 +25,13 @@ agendamento.geometry("%dx%d+%d+%d" % (width, height, posx, posy))
 agendamento.configure(bg='#fff')
 
 # foto "logo" e Label para guardar a imagem Logo
-fotoOriginal = Image.open("imgs/logo.png")
+fotoOriginal = Image.open("images/logo.png")
 fotoResize = fotoOriginal.resize((150, 30))
 fotoLogo = ImageTk.PhotoImage(fotoResize)
 test = Label(agendamento, bg="#FFFFFF", image=fotoLogo).place(x=80, y=30)
 
 # foto "barra de progresso" e Label para "barra de progresso"
-fotoOriginal = Image.open("imgs/progresso.png")
+fotoOriginal = Image.open("images/progresso.png")
 fotoResize = fotoOriginal.resize((180, 60))
 fotoProgresso = ImageTk.PhotoImage(fotoResize)
 test = Label(agendamento, bg="#FFFFFF", image=fotoProgresso).place(relx=.50, rely=.100, anchor="center")
@@ -40,7 +40,7 @@ test = Label(agendamento, bg="#FFFFFF", image=fotoProgresso).place(relx=.50, rel
 lbl_agendamento = Label(agendamento, text="Agendamento", bg="#FFF", font=(
     "Helvetica 14 bold")).place(relx=.50, rely=.200, anchor="center")
 # coracao
-fotoOriginal = Image.open("imgs/coracao.png")
+fotoOriginal = Image.open("images/coracao.png")
 fotoResize = fotoOriginal.resize((15, 13))
 fotoCoracao = ImageTk.PhotoImage(fotoResize)
 coracao = Label(agendamento, bg="#FFF", image=fotoCoracao).place(relx=.60, rely=.200, anchor="e")

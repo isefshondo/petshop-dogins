@@ -1,6 +1,4 @@
 from tkinter import *
-
-# Importação da biblioteca para edeição de imagens
 from PIL import Image, ImageTk
 PC = Tk()
 
@@ -26,7 +24,7 @@ PC.geometry("%dx%d+%d+%d" % (width, height, posx, posy))
 PC.configure(bg='#fff')
 
 #foto "logo"
-fotoOriginal = Image.open("imgs/logo.png")
+fotoOriginal = Image.open("images/logo.png")
 fotoResize = fotoOriginal.resize((150, 30))
 fotoLogo = ImageTk.PhotoImage(fotoResize)
 #Label para guardar a imagem Logo
@@ -36,7 +34,7 @@ test = Label(PC, bg="#FFFFFF", image=fotoLogo).place(x=80, y=30)
 lbl_agendamento = Label(PC, text="Agendamento", bg="#FFF", font=(
     "Helvetica 12 bold")).place(relx=.50, rely=.200, anchor="center")
 # coracao
-fotoOriginal = Image.open("imgs/coracao.png")
+fotoOriginal = Image.open("images/coracao.png")
 fotoResize = fotoOriginal.resize((15, 13))
 fotoCoracao = ImageTk.PhotoImage(fotoResize)
 coracao = Label(PC, bg="#FFF", image=fotoCoracao).place(
@@ -54,7 +52,7 @@ lbl_nome = Label(PC, bg="#FFF", text="Nome do Cliente",
 text_nome = Entry(PC, width=40).place(x=310, y=180)
 
 # foto "table"
-fotoOriginal = Image.open("imgs/table.png")
+fotoOriginal = Image.open("images/table.png")
 fotoResize = fotoOriginal.resize((700, 225))
 fotoTable = ImageTk.PhotoImage(fotoResize)
 

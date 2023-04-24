@@ -16,9 +16,24 @@ def pet():
 signUpOwner = Tk()
 
 signUpOwner.title("Petshop Dogin's")
-signUpOwner.state("zoomed")
 signUpOwner.resizable(False, False)
 signUpOwner.configure(bg = "#FFF")
+
+heightTaskBar = 40
+
+widthScreen = (signUpOwner.winfo_screenwidth())
+heightScreen = (signUpOwner.winfo_screenheight() - heightTaskBar)
+
+width = 1130
+height = 650
+
+posx = (widthScreen/2) - (width/2)
+posy = (heightScreen/2) - (height/2)
+
+signUpOwner.maxsize(width, height)
+signUpOwner.minsize(width, height)
+
+signUpOwner.geometry("%dx%d+%d+%d" % (width, height, posx, posy))
 
 signUpOwner.grid_columnconfigure(1, weight = 2)
 signUpOwner.grid_columnconfigure(2, weight = 1)
@@ -27,6 +42,9 @@ signUpOwner.grid_rowconfigure(1, weight = 1)
 # Necessary Measurements
 width_screen = signUpOwner.winfo_screenwidth()
 height_screen = signUpOwner.winfo_screenheight()
+
+def goToMenu():
+    subprocess.run(["python", "__menu__.py"])
 
 # Header of the Sign Up Owner Interface
 mainLogoImage = PhotoImage(file = r"images\mainLogo.png")
@@ -37,7 +55,7 @@ progressBarImage = PhotoImage(file = r"images\progressBar.png")
 progressBarHolder = Label(signUpOwner, image = progressBarImage, bg = "#FFF")
 progressBarHolder.grid(column = 1, row = 0, sticky = "nsew")
 
-goBackButton = Button(signUpOwner, text = "Voltar ao menu", activebackground = "#FFF", activeforeground = "#777", bg = "#FFF", fg = "#777", font = ("Open Sans", 16, "underline"), bd = 0, command=ir_menu)
+goBackButton = Button(signUpOwner, text = "Voltar ao menu", activebackground = "#FFF", activeforeground = "#777", bg = "#FFF", fg = "#777", font = ("Open Sans", 18, "underline"), bd = 0, command=goToMenu)
 goBackButton.grid(column = 2, row = 0, sticky = "nse", padx = 5)
 # End of the Sign Up's Page Header
 
@@ -56,7 +74,7 @@ titleFrame.grid_columnconfigure(0, weight = 1)
 titleFrame.grid_columnconfigure(1, weight = 1)
 titleFrame.grid_rowconfigure(0, weight = 1)
 
-heartIcon = PhotoImage(file = r"assets\imgs\heart-icon.png")
+heartIcon = PhotoImage(file = r"images\heart-icon.png")
 heartIconLabel = Label(titleFrame, image = heartIcon, bg = "#FFF")
 heartIconLabel.grid(column = 1, row = 0, sticky = "w")
 
@@ -80,20 +98,9 @@ signUpFrame.grid_columnconfigure(3, weight = 2)
 accountInformation = Frame(mainElementsWrapper, bg = "#FFF")
 accountInformation.grid(column = 2, row = 1, sticky = "nsew")
 
-# Imagem inicial
+# Image Upload Frame
 widthPhoto = int((width_screen * 13) / 100)
 heightPhoto = int((height_screen * 27) / 100)
-
-defaultPhoto = Image.open("images/defaultPhoto.png")
-defaultPhotoSize = defaultPhoto.resize((widthPhoto, heightPhoto))
-defaultProfilePhoto = ImageTk.PhotoImage(defaultPhotoSize)
-
-defaultUploadLabel = Label(uploadImageFrame, image = defaultProfilePhoto)
-defaultUploadLabel.place(relx = .5, rely = .3, anchor = "center")
-
-# Image Upload Frame
-widthPhoto = 1366
-heightPhoto = 768
 
 pasta_inicial=""
 def escolher_imagem():
@@ -111,7 +118,15 @@ def escolher_imagem():
     lbl_imagem.image = imagem_tk
     lbl_imagem.place(relx = .7/5, rely = .44, anchor = "center")
 
-uploadButton = Button(uploadImageFrame, text = "Upload de Imagem", command=escolher_imagem)
+
+defaultPhoto = Image.open("images/defaultPhoto.png")
+defaultPhotoSize = defaultPhoto.resize((widthPhoto, heightPhoto))
+defaultProfilePhoto = ImageTk.PhotoImage(defaultPhotoSize)
+
+defaultUploadLabel = Label(uploadImageFrame, image = defaultProfilePhoto)
+defaultUploadLabel.place(relx = .5, rely = .3, anchor = "center")
+
+uploadButton = Button(uploadImageFrame, text = "Upload de Imagem", bd = 0, bg = "#D5D5D5", padx = 25, pady = 5, command=escolher_imagem)
 uploadButton.place(relx = .5, rely = .55, anchor = "center")
 
 # Creating the Form Elements
@@ -170,17 +185,17 @@ buttonWrapper.grid_columnconfigure(1, weight = 1)
 buttonWrapper.grid_columnconfigure(2, weight = 1)
 buttonWrapper.grid_rowconfigure(0, weight = 1)
 
-saveButton = Button(buttonWrapper, text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0, command=pet)
-saveButton.grid(column = 2, row = 0, padx = 50)
+saveButton = Button(buttonWrapper, text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0)
+saveButton.grid(column = 0, row = 0, padx = 50)
 
 borderButton = Frame(buttonWrapper, bg = "#85D3FF", padx = 1.5, pady = 1.5)
 borderButton.grid(column = 1, row = 0, padx = 50)
 
-updateButton = Button(borderButton, text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF", command=success)
+updateButton = Button(borderButton, text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF")
 updateButton.pack()
 
-deleteButton = Button(buttonWrapper, text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777", command=success)
-deleteButton.grid(column = 0, row = 0, padx = 50)
+deleteButton = Button(buttonWrapper, text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777")
+deleteButton.grid(column = 2, row = 0, padx = 50)
 
 # Account Info
 accountInformationHolder = Frame(accountInformation, bg = "#FFF")

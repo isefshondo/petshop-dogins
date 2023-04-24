@@ -17,82 +17,187 @@ def success():
 signUpPet = Tk()
 
 signUpPet.title("Petshop Dogin's")
-# signUpPet.state("zoomed")
-width = 1100
-height = 680
-
 signUpPet.resizable(False, False)
 signUpPet.configure(bg = "#FFF")
 
-signUpPet.grid_columnconfigure(0, weight = 0)
-signUpPet.grid_columnconfigure(1, weight = 2)
-signUpPet.grid_columnconfigure(2, weight = 1)
-signUpPet.grid_rowconfigure(0, weight = 0)
-signUpPet.grid_rowconfigure(1, weight = 1)
+heightTaskBar = 40
 
-# Measurements
-width_screen = signUpPet.winfo_screenwidth()
-height_screen = signUpPet.winfo_screenheight()
+widthScreen = (signUpPet.winfo_screenwidth())
+heightScreen = (signUpPet.winfo_screenheight() - heightTaskBar)
 
-posx = (width_screen / 2) - (width / 2)
-posy = (height_screen / 2) - (height / 2)
+width = 1130
+height = 650
+
+posx = (widthScreen/2) - (width/2)
+posy = (heightScreen/2) - (height/2)
+
+signUpPet.maxsize(width, height)
+signUpPet.minsize(width, height)
 
 signUpPet.geometry("%dx%d+%d+%d" % (width, height, posx, posy))
 
-#Header of the Sign Up Pet Interface
+signUpPet.grid_columnconfigure(1, weight = 2)
+signUpPet.grid_columnconfigure(2, weight = 1)
+signUpPet.grid_rowconfigure(1, weight = 1)
+
+# Necessary Measurements
+width_screen = signUpPet.winfo_screenwidth()
+height_screen = signUpPet.winfo_screenheight()
+
+def goToMenu():
+    subprocess.run(["python", "__init__.py"])
+
+# Header of the Sign Up Owner Interface
 mainLogoImage = PhotoImage(file = r"images\mainLogo.png")
 mainLogoHolder = Label(signUpPet, image = mainLogoImage, bg = "#FFF")
-mainLogoHolder.grid(column = 0, row = 0, sticky = "w", padx = (5, 0))
+mainLogoHolder.grid(column = 0, row = 0, sticky = "nw", padx = 5)
 
-progressBarImage = PhotoImage(file = r"images\secondProgressBar.png")
+progressBarImage = PhotoImage(file = r"images\progressBar.png")
 progressBarHolder = Label(signUpPet, image = progressBarImage, bg = "#FFF")
 progressBarHolder.grid(column = 1, row = 0, sticky = "nsew")
 
-goBackButton = Button(signUpPet, text = "Voltar ao menu", activebackground = "#FFF", activeforeground = "#777", bd = 0, bg = "#FFF", fg = "#777", font = ("Open Sans", 16, "underline"), command=ir_menu)
-goBackButton.grid(column = 2, row = 0, sticky = "nse", padx = (0, 5))
-# End of the Header
+goBackButton = Button(signUpPet, text = "Voltar ao menu", activebackground = "#FFF", activeforeground = "#777", bg = "#FFF", fg = "#777", font = ("Open Sans", 18, "underline"), bd = 0, command=goToMenu)
+goBackButton.grid(column = 2, row = 0, sticky = "nse", padx = 5)
+# End of the Sign Up's Page Header
 
-# Body of the application
-elementsHolder = Frame(signUpPet, bd = 2, relief = "flat")
-elementsHolder.grid(column = 0, row = 1, sticky = "nsew", columnspan = 3, padx = 20, pady = 20)
+mainElementsWrapper = Frame(signUpPet, bd = 2, bg = "#D9D9D9", relief = "flat")
+mainElementsWrapper.grid(column = 0, row = 1, sticky = "nsew", columnspan = 3, padx = 20, pady = 20)
 
-elementsHolder.grid_columnconfigure(0, weight = 1)
-elementsHolder.grid_columnconfigure(1, weight = 2)
-elementsHolder.grid_columnconfigure(2, weight = 1)
-elementsHolder.grid_rowconfigure(1, weight = 1)
+mainElementsWrapper.grid_columnconfigure(0, weight = 1)
+mainElementsWrapper.grid_columnconfigure(1, weight = 2)
+mainElementsWrapper.grid_columnconfigure(2, weight = 1)
+mainElementsWrapper.grid_rowconfigure(1, weight = 1)
 
-# Body elements
-mainTitleHolder = Frame(elementsHolder, bg = "#FFF")
-mainTitleHolder.grid(column = 0, row = 0, sticky = "nsew", columnspan = 3)
+titleFrame = Frame(mainElementsWrapper, bg = "#FFF")
+titleFrame.grid(column = 0, row = 0, sticky = "we", columnspan = 3)
 
-mainTitleHolder.grid_columnconfigure(0, weight = 1)
-mainTitleHolder.grid_columnconfigure(1, weight = 1)
-mainTitleHolder.grid_rowconfigure(0, weight = 1)
+titleFrame.grid_columnconfigure(0, weight = 1)
+titleFrame.grid_columnconfigure(1, weight = 1)
+titleFrame.grid_rowconfigure(0, weight = 1)
 
-mainTitleDesc = Label(mainTitleHolder, text = "Cadastro do pet", bg = "#FFF", font = ("Open Sans", 35, "bold"))
-mainTitleDesc.grid(column = 0, row = 0, sticky = "e")
+heartIcon = PhotoImage(file = r"images\heart-icon.png")
+heartIconLabel = Label(titleFrame, image = heartIcon, bg = "#FFF")
+heartIconLabel.grid(column = 1, row = 0, sticky = "w")
 
-mainHeartIcon = PhotoImage(file = r"assets\imgs\heart-icon.png")
-mainHeartHolder = Label(mainTitleHolder, image = mainHeartIcon, bg = "#FFF")
-mainHeartHolder.grid(column = 1, row = 0, sticky = "w")
+interfaceDescription = Label(titleFrame, text = "Cadastro do Pet", bg = "#FFF", font = ("Open Sans", 35, "bold"))
+interfaceDescription.grid(column = 0, row = 0, sticky = "e")
 
+uploadImageFrame = Frame(mainElementsWrapper, bg = "#FFF")
+uploadImageFrame.grid(column = 0, row = 1, sticky = "nsew")
 
-saveButton = Button( text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0, command=agendar)
-saveButton.place(relx = .60, rely = .850)
+signUpHolder = Frame(mainElementsWrapper, bg = "#FFF")
+signUpHolder.grid(column = 1, row = 1, sticky = "nsew")
 
-borderButton = Frame( bg = "#85D3FF", padx = 1.5, pady = 1.5) #nao funciona
-borderButton.place(relx = .45, rely = .850)
+signUpFrame = Frame(signUpHolder, bg = "#FFF")
+signUpFrame.place(relx = .5, rely = .35, anchor = "center")
 
-updateButton = Button( text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF", command=success)
-updateButton.place(relx = .45, rely = .850)
+signUpFrame.grid_columnconfigure(0, weight = 1)
+signUpFrame.grid_columnconfigure(1, weight = 2)
+signUpFrame.grid_columnconfigure(2, weight = 2)
+signUpFrame.grid_columnconfigure(3, weight = 2)
 
-deleteButton = Button( text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777", command=success)
-deleteButton.place(relx = .30, rely = .850)
+accountInformation = Frame(mainElementsWrapper, bg = "#FFF")
+accountInformation.grid(column = 2, row = 1, sticky = "nsew")
 
+# Image Upload Frame
+# foto padrao antes d upload
+widthPhoto = int((width_screen * 13) / 100)
+heightPhoto = int((height_screen * 27) / 100)
 
-# Date Info
-accountInformationHolder = Frame( bg = "#FFF")
-accountInformationHolder.place(relx = .10, rely = .44)
+# Image Upload Frame
+pasta_inicial=""
+def escolher_imagem():
+    caminho_imagem = filedialog.askopenfilename(initialdir=pasta_inicial, title="Escolha uma imagem",
+                                                filetypes=(("Arquivos de imagem", ".jpg;.jpeg;*.png"),
+                                                           ("Todos os arquivos", ".")))
+    imagem_pil = Image.open(caminho_imagem)
+    largura, altura = imagem_pil.size
+    if altura > 200:
+        proporcao = altura / 200
+        nova_altura = int(altura / proporcao)
+        imagem_pil = imagem_pil.resize((170, nova_altura))
+    imagem_tk = ImageTk.PhotoImage(imagem_pil)
+    lbl_imagem = Label(uploadImageFrame, image=imagem_tk)
+    lbl_imagem.image = imagem_tk
+    lbl_imagem.place(relx = .100, rely = .30)
+
+defaultPhoto = Image.open("images/defaultPhotoPet.png")
+defaultPhotoSize = defaultPhoto.resize((widthPhoto, heightPhoto))
+defaultProfilePhoto = ImageTk.PhotoImage(defaultPhotoSize)
+
+defaultUploadLabel = Label(uploadImageFrame, image = defaultProfilePhoto)
+defaultUploadLabel.place(relx = .5, rely = .3, anchor = "center")
+
+uploadButton = Button(uploadImageFrame, text = "Upload de Imagem", bd = 0, bg = "#D5D5D5", padx = 25, pady = 5, command=escolher_imagem)
+uploadButton.place(relx = .5, rely = .55, anchor = "center")
+
+def displayFormElements(labelText, columnLabel, rowLabel, columnEntry, rowEntry, stickyEntry):
+    signUpLabel = Label(signUpFrame, text = labelText, bg = "#FFF")
+    if columnLabel == 1:
+      signUpLabel.grid(column = columnLabel, row = rowLabel, sticky = "w", padx = 20)
+    signUpLabel.grid(column = columnLabel, row = rowLabel, sticky = "w")
+    signUpEntry = Entry(signUpFrame)
+    if columnEntry == 1:
+       signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, padx = 20)
+    signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry)
+    if labelText == "Nome":
+       signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, padx = 20, columnspan = 2)
+    if labelText == "Código de cadastro" or labelText == "Idade":
+       signUpEntry.config(state = "disabled")
+
+displayFormElements("Código de cadastro", 0, 0, 0, 1, "we")
+displayFormElements("Data de nascimento", 0, 3, 0, 4, "wn")
+displayFormElements("Nome", 1, 0, 1, 1, "we")
+displayFormElements("Idade", 1, 3, 1, 4, "wn")
+displayFormElements("Raça", 1, 6, 1, 7, "we")
+displayFormElements("Peso", 2, 6, 2, 7, "wn")
+
+speciesLabel = Label(signUpFrame, text="Espécie:", bg="#fff").grid(column=0, row=6, sticky="w")
+speciesList = ["Cachorro", "Gato"]
+speciesOptions = ttk.Combobox(signUpFrame, values=speciesList)
+speciesOptions.set("Selecionar")
+speciesOptions.grid(column=0, row=7, sticky="we")
+
+descriptionLabel = Label(signUpFrame, text="Descrição", bg="#fff").grid(column=0, row=9, sticky="w")
+descriptionText = Entry(signUpFrame).grid(column=0, row=10, sticky="we", columnspan=2)
+
+# Creating Blank Spaces Between Rows
+firstBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
+firstBlankSpace.grid(column = 0, row = 2, sticky = "nsew", columnspan = 4)
+
+secondBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
+secondBlankSpace.grid(column = 0, row = 5, sticky = "nsew", columnspan = 4)
+
+thirdBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
+thirdBlankSpace.grid(column = 0, row = 8, sticky = "nsew", columnspan = 4)
+
+fourthBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
+fourthBlankSpace.grid(column = 0, row = 11, sticky = "nsew", columnspan = 4)
+# End of Creating Blank Spaces Between Rows
+
+buttonWrapper = Frame(signUpHolder, bg = "#FFF")
+buttonWrapper.place(relx = .5, rely = .85, anchor = "s")
+
+buttonWrapper.grid_columnconfigure(0, weight = 1)
+buttonWrapper.grid_columnconfigure(1, weight = 1)
+buttonWrapper.grid_columnconfigure(2, weight = 1)
+buttonWrapper.grid_rowconfigure(0, weight = 1)
+
+saveButton = Button(buttonWrapper, text = "Salvar", padx = 35, activebackground = "#76BCE3", bg = "#85D3FF", bd = 0, command=agendar)
+saveButton.grid(column = 0, row = 0, padx = 50)
+
+borderButton = Frame(buttonWrapper, bg = "#85D3FF", padx = 1.5, pady = 1.5)
+borderButton.grid(column = 1, row = 0, padx = 50)
+
+updateButton = Button(borderButton, text = "Alterar", padx = 30, activebackground = "#FFF", bd = 0, bg = "#FFF", command=success)
+updateButton.pack()
+
+deleteButton = Button(buttonWrapper, text = "Excluir", padx = 25, activebackground = "#C5C5C5", activeforeground = "#777", bd = 0, bg = "#D9D9D9", fg = "#777", command=success)
+deleteButton.grid(column = 2, row = 0, padx = 50)
+
+# Account Info
+accountInformationHolder = Frame(accountInformation, bg = "#FFF")
+accountInformationHolder.place(relx = .5, rely = .18, anchor = "center")
 
 accountInformationHolder.grid_columnconfigure(0, weight = 1)
 accountInformationHolder.grid_rowconfigure(2, weight = 1)
@@ -111,100 +216,5 @@ signUpDate.grid(column = 0, row = 3, sticky = "w")
 signUpDateEntry = Entry(accountInformationHolder)
 signUpDateEntry.config(state = "disabled")
 signUpDateEntry.grid(column = 0, row = 4, sticky = "we")
-
-# Imagem inicial
-widthPhoto = 1366
-heightPhoto = 768
-
-#foto padrao antes d upload
-widthPhoto = int((width_screen * 13) / 100)
-heightPhoto = int((height_screen * 27) / 100)
-
-fotoOriginal = Image.open("images/defaultPhotoPet.png")
-fotoResize = fotoOriginal.resize((widthPhoto, heightPhoto))
-fotoPerfil = ImageTk.PhotoImage(fotoResize)
-lbl_foto_Profile = Label(bg="#FFFFFF", image=fotoPerfil)
-lbl_foto_Profile.place(relx=.100, rely= .30)
-
-# Image Upload Frame
-
-pasta_inicial=""
-def escolher_imagem():
-    caminho_imagem = filedialog.askopenfilename(initialdir=pasta_inicial, title="Escolha uma imagem",
-                                                filetypes=(("Arquivos de imagem", ".jpg;.jpeg;*.png"),
-                                                           ("Todos os arquivos", ".")))
-    imagem_pil = Image.open(caminho_imagem)
-    largura, altura = imagem_pil.size
-    if altura > 200:
-        proporcao = altura / 200
-        nova_altura = int(altura / proporcao)
-        imagem_pil = imagem_pil.resize((170, nova_altura))
-    imagem_tk = ImageTk.PhotoImage(imagem_pil)
-    lbl_imagem = Label(signUpPet, image=imagem_tk)
-    lbl_imagem.image = imagem_tk
-    lbl_imagem.place(relx = .100, rely = .30)
-
-uploadButton = Button(text = "Upload de Imagem", command=escolher_imagem)
-uploadButton.place(relx = .120, rely = .62)
-
-# Sign Up Frame
-signUpPetFrame = Frame(elementsHolder)
-signUpPetFrame.grid(column = 1, row = 1, sticky = "nsew")
-
-signUpFrame = Frame(signUpPetFrame, bg = "#FFF")
-signUpFrame.place(relx = .5, rely = .35, anchor = "center")
-
-signUpFrame.grid_columnconfigure(0, weight = 1)
-signUpFrame.grid_columnconfigure(1, weight = 1)
-signUpFrame.grid_columnconfigure(2, weight = 1)
-
-def displayFormElements(labelText, columnLabel, rowLabel, columnEntry, rowEntry, stickyEntry):
-    signUpLabel = Label(signUpFrame, text = labelText, bg = "#FFF")
-    if columnLabel == 1:
-      signUpLabel.grid(column = columnLabel, row = rowLabel, sticky = "w", padx = 20)
-    signUpLabel.grid(column = columnLabel, row = rowLabel, sticky = "w")
-    signUpEntry = Entry(signUpFrame)
-    if columnEntry == 1:
-       signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, padx = 20)
-    signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry)
-    if labelText == "Nome":
-       signUpEntry.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, padx = 20, columnspan = 2)
-    # if labelText == "Descrição":
-    #    signUpText = Text(signUpFrame)
-    #    signUpText.grid(column = columnEntry, row = rowEntry, sticky = stickyEntry, columnspan = 20)
-    if labelText == "Código de cadastro" or labelText == "Idade":
-       signUpEntry.config(state = "disabled")
-
-displayFormElements("Código de cadastro", 0, 0, 0, 1, "wn")
-displayFormElements("Data de nascimento", 0, 3, 0, 4, "wn")
-displayFormElements("Nome", 1, 0, 1, 1, "we")
-displayFormElements("Idade", 1, 3, 1, 4, "wn")
-displayFormElements("Raça", 1, 6, 1, 7, "we")
-displayFormElements("Peso", 2, 6, 2, 7, "wn")
-
-#comboBox especies
-list_especies = ["Gato", "Cachorro"]
-lbl_especies = Label(signUpFrame, text="Especies")
-lbl_especies.grid(column=0, row = 6, sticky="w")
-cb_especies = ttk.Combobox(signUpFrame, values=list_especies)
-cb_especies.set("Cachorro")
-cb_especies.grid(column=0, row = 7)
-
-#Descrição
-txt_descricao = Label(signUpPet,text="Descrição" ,bg = "#FFF", font=("Helvetica 10"))
-txt_descricao.place(relx = .363, rely = .59, anchor = "n")
-lbl_descricao = Entry(signUpPet)
-lbl_descricao.place(relx = .500, rely = .62, anchor = "n" ,  width="420" , height="70")
-
-firstBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
-firstBlankSpace.grid(column = 0, row = 2, sticky = "nsew", columnspan = 4)
-
-secondBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
-secondBlankSpace.grid(column = 0, row = 5, sticky = "nsew", columnspan = 4)
-
-thirdBlankSpace = Label(signUpFrame, text = "", bg = "#FFF")
-thirdBlankSpace.grid(column = 0, row = 8, sticky = "nsew", columnspan = 4)
-
-#data
 
 signUpPet.mainloop()

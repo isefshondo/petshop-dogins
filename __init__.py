@@ -17,8 +17,8 @@ loginInterface.resizable(False, False)
 width_screen = loginInterface.winfo_screenwidth()
 height_screen = loginInterface.winfo_screenheight() - taskBarHeight
 
-width = int((width_screen * 57) / 100)
-height = int((height_screen * 58) / 100)
+width = 780
+height = 440
 
 posx = (width_screen / 2) - (width / 2)
 posy = (height_screen / 2) - (height / 2)

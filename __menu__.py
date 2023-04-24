@@ -3,10 +3,11 @@ import subprocess
 
 servicesInterface = Tk()
 
-#funcAO para redirecionar
-
 def table():
     subprocess.run(["python", "agenda.py"])
+
+def pet():
+    subprocess.run(["python", "__signUpPet__.py"])
 
 def owner():
     subprocess.run(["python", "__signUpOwner__.py"])
@@ -18,8 +19,6 @@ def sair_tela():
     servicesInterface.destroy()
     return
 
-#NO BUTTONS adicionar command=nomeDoComando (ex Button (command=go_register))
-
 # Main Configuration
 taskBarHeight = 40
 
@@ -28,8 +27,8 @@ servicesInterface.resizable(False, False)
 width_screen = servicesInterface.winfo_screenwidth()
 height_screen = servicesInterface.winfo_screenheight() - taskBarHeight
 
-width = int((width_screen * 87) / 100)
-height = int((height_screen * 70) / 100)
+width = 1130
+height = 600
 
 posx = (width_screen / 2) - (width / 2)
 posy = (height_screen / 2) - (height / 2)
@@ -49,7 +48,7 @@ logoLabel.grid(column = 0, row = 0, padx = 80)
 cardsServicesWrapper = Frame(servicesInterface, bg = "#FFF", relief = "flat", bd = 0)
 cardsServicesWrapper.place(relx = .5, rely = .55, anchor = CENTER)
 
-welcomingLabel = Label(cardsServicesWrapper, text = "Bem-Vindo(a) Fulano", bg = "#FFF", font = ("Helvetica 20 bold"))
+welcomingLabel = Label(cardsServicesWrapper, text = "Bem-Vindo(a)", bg = "#FFF", font = ("Helvetica 20 bold"))
 welcomingLabel.grid(column = 0, row = 0, columnspan = 5)
 
 heartIconImage = PhotoImage(file = r"assets\imgs\heart-icon.png")
@@ -68,14 +67,11 @@ thirdService.grid(column = 3, row = 1, padx = 5, pady = 20)
 fourthService = Frame(cardsServicesWrapper, bg = "#ededed", bd = 0, width = cardWidth, height = cardHeight)
 fourthService.grid(column = 4, row = 1, padx = 5, pady = 20)
 
-# Later: Add the imageLabel parameter
 def displayServicesElements(serviceCard, serviceDescription, buttonLabel, pathButton):
     serviceLabel = Label(serviceCard, text = serviceDescription, bg = "#ededed")
     serviceLabel.place(relx = .5, rely = .75, anchor = "center")
     buttonService = Button(serviceCard, text = buttonLabel, bg = "#85D3FF", activebackground = "#76bce3", bd = 0, cursor = "hand2", padx = 50, pady = 5, command=pathButton)
     buttonService.place(relx = .5, rely = .95, anchor = "s")
-
-# Temporary Solution - TODO: Pass this to the function
 
 firstServiceImage = PhotoImage(file = r"assets\imgs\sign-up-pets.png")
 firstImageLabel = Label(firstService, image = firstServiceImage, compound = "top")
@@ -93,10 +89,8 @@ fourthServiceImage = PhotoImage(file = r"assets\imgs\edit-delete.png")
 fourthImageLabel = Label(fourthService, image = fourthServiceImage, compound = "top")
 fourthImageLabel.place(relx = .5, rely = .35, anchor = "center")
 
-# End of Temporary Solution
-
 displayServicesElements(firstService, "Cadastre o cliente ou o pet aqui.", "Cadastrar", owner)
-displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar", table)
+displayServicesElements(secondService, "Agende um serviço para o pet.", "Agendar", pet)
 displayServicesElements(thirdService, "Cadastre aqui os serviços disponíveis.", "Cadastrar", services)
 displayServicesElements(fourthService, "Edite ou exclua o cadastro do cliente.", "Editar", table)
 
